@@ -15,12 +15,17 @@
 @property (nonatomic,strong) NSArray *listTeams;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSNumber *selectRow;
-
+@property (nonatomic, ) NSString *hello;
+//对NSString使用copy，防止mutable的string影响到非mutable的string，也就是进行深拷贝而不是浅拷贝
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
+    _hello = @"hello world";
+    NSMutableString *copyStr = [_hello mutableCopy];
+    NSString *copystr = [_hello copy];
+    NSLog(@"%p,%p,%p",_hello,copyStr,copystr);
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSBundle *bundle = [NSBundle mainBundle];
