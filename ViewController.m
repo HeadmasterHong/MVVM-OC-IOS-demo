@@ -33,7 +33,7 @@
     self.listTeams = [[NSArray alloc] initWithContentsOfFile:plistPAth];
     
     //使用comparator block进行排序
-//    sel f.listTeams = [self.listTeams sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+//    self.listTeams = [self.listTeams sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
 //        NSDictionary *d1 = obj1;
 //        NSDictionary *d2 = obj2;
 //        return [[d1 objectForKey:@"name"] compare:[d2 objectForKey:@"name"]];
