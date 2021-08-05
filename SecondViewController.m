@@ -101,7 +101,7 @@
     if ([_delegate respondsToSelector:@selector(sendValue:)]) {
         [_delegate sendValue:str];
     }
-    //step1:注册通知
+    //step1:注册将要通知
 //    [[NSNotificationCenter defaultCenter]postNotificationName:@"labelTextNotification" object:[event objectForKey:@"name"]];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

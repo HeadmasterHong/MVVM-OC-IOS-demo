@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString  *phone;
 @property (nonatomic, assign) int  score;
 
-
-
 @end
 
 NS_ASSUME_NONNULL_END
