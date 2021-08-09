@@ -25,6 +25,27 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
+    
+    {
+        NSDictionary *dic = @{
+            @"A" : @[@"1",@"2",@"3"],
+            @"B" : @[@"1",@"2",@"3",@"1",@"2",@"3"],
+            @"C" : @[@"1",@"2",@"3",@"2",@"3"],
+            @"D" : @[@"1",@"2",@"3"],
+            @"E" : @[@"1",@"2",@"3"],
+        };
+        
+        for (NSString *key in dic.allKeys) {
+            NSArray *value = dic[key];
+            NSLog(@">>> key:%@, value:%@",key,value);
+        }
+        
+    }
+    
+    
+    
+    
     _hello = @"hello world";
     NSMutableString *copyStr = [_hello mutableCopy];
     NSString *copystr = [_hello copy];
@@ -43,12 +64,14 @@
 //    }];
     
     //使用descriptor来排序，descriptor本身只是一个获取keypath的工具，他能根据keypath进行排序
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    self.listTeams = [self.listTeams sortedArrayUsingDescriptors:sortDescriptors];
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    self.listTeams = [self.listTeams sortedArrayUsingDescriptors:sortDescriptors];
     
     //使用selector进行排序】
-    self.listTeams = [self.listTeams sortedArrayUsingSelector:@selector(compare:)];
+//    for (NSArray *listteam in _listTeams) {
+//        [listteam sortedArrayUsingSelector:@selector(compare:)];
+//    }
     
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height)];
@@ -70,16 +93,17 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    return _listTeams.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [[_listTeams objectAtIndex:section] count]-1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%li section",section];;
+    NSString *str = [[_listTeams objectAtIndex:section] objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@ section", str];
 }
 
 
@@ -95,8 +119,9 @@
     }
     
     //确定当前cell的位置和内容
-    NSInteger row = [indexPath row]+[indexPath section]*2;
-    NSDictionary *rowDict = [self.listTeams objectAtIndex:row];
+    NSInteger row = [indexPath section];
+    NSArray *rowArr = [self.listTeams objectAtIndex:row];
+    NSDictionary *rowDict = [rowArr objectAtIndex:[indexPath row]+1];
     Cell.textLabel.text = [rowDict objectForKey:@"name"];
     NSString *imagePath = [rowDict objectForKey:@"image"];
     imagePath = [imagePath stringByAppendingString:@".png"];
@@ -170,6 +195,8 @@
         NSLog(@"%@", responseObject);
         NSDictionary *json = [[responseObject objectForKey:@"result"] yy_modelToJSONObject];
         NSLog(@"%@",json);
+        
+        
         //创建一个alert
         UIAlertController *uac = [UIAlertController alertControllerWithTitle:@"success" message:temp_cur preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *noaction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
