@@ -1,1 +1,6 @@
-Demo
+#基于MVVM模式的iOS/OC小demo
+##主页:UITableView 根据大洲分section显示国家 数据源驱动
+点击任意国家进入二级页面secondView (UICollectionView)在二级页面选中运动项目使用delegate回传信息给首页粘合在所选国家之后显示 dataSource皆抽离为ViewModel使ViewController更轻量化
+##查看天气: 将AFNetWorking网络请求从ViewController中抽出, 单独设计WeatherViewModel以及Weather实体类,使用YYModel进行Json-Model转换,主controller持有ViewModel 并使用传入回调函数进行初始化
+##个人中心: 将数据读取从SelfCenterVC中抽出, 单独设计FMDBOperation和Person实体类 使用属性从主页面传入sear_id在数据库查询, Masonry绘制界面
+##第三方库使用Cocoapods进行管理
