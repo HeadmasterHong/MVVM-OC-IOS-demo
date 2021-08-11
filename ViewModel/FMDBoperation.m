@@ -20,12 +20,12 @@
     //FMDB
     NSString *docuPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *dbPath = [docuPath stringByAppendingPathComponent:@"test.db"];
+    NSLog(@">>> sql lite address %@",dbPath);
     self.db = [FMDatabase databaseWithPath:dbPath];
     [self.db open];
 }
 -(Person *)findPersonByID:(NSInteger)sear_id{
     [self openDatabase];
-    //自定义的类怎么初始化
     Person *res = [[Person alloc] init];
     if (!([_db open])) {
         NSLog(@"fail DB");
@@ -33,14 +33,13 @@
     }
     FMResultSet *result = [_db executeQuery:@"SELECT * FROM t_student WHERE ID = ?" withArgumentsInArray:@[[NSNumber numberWithInteger:sear_id]]];
     while ([result next]) {
-        NSLog(@"%@",[result stringForColumn:@"name"]);
         res.ID = (int)sear_id;
         res.name = [result stringForColumn:@"name"];
         res.phone = [result stringForColumn:@"phone"];
         res.score = [result intForColumn:@"score"];
-        
     }
     [_db close];
+    
     return res;
 }
 

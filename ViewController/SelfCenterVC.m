@@ -10,7 +10,6 @@
 #import "UILabel+LabelExtension.h"
 #import "FMDBoperation.h"
 @interface SelfCenterVC ()
-@property (nonatomic,strong) UIImageView *portraitView;
 @property (nonatomic,strong) UIView *contentView;
 @property (nonatomic,strong) UILabel *IDView;
 @property (nonatomic,strong) UILabel *nameView;
@@ -25,16 +24,17 @@
     [super viewDidLoad];
     
     [self bindPerson:self.search_id];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self addView];
+    [self makeConstraints];
     
+}
+-(void)addView{
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.contentView];
     [self.contentView addSubview:self.IDView];
     [self.contentView addSubview:self.nameView];
     [self.contentView addSubview:self.phoneView];
     [self.contentView addSubview:self.scoreView];
-    [self makeConstraints];
-    
 }
 -(UIView *)contentView
 {
@@ -111,19 +111,10 @@
         make.bottom.mas_equalTo(-20);
     }];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(void)bindPerson:(NSInteger)search_id
 {
     FMDBoperation *fmdb = [[FMDBoperation alloc] init];
     self.selfPerson = [fmdb findPersonByID:search_id];
-    NSLog(@"%@",self.selfPerson);
 }
 @end
