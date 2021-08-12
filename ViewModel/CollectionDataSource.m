@@ -45,6 +45,7 @@
     NSDictionary *event = [self.events objectAtIndex:(indexPath.section*2 + indexPath.row)];
     
     cell.textLabel.text = [event objectForKey:@"name"];
+    cell.textLabel.textColor = [UIColor labelColor];
     cell.imgView.image = [UIImage imageNamed:[event objectForKey:@"image"]];
 
     return cell;

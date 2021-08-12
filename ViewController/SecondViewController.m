@@ -24,20 +24,14 @@
     self.dataSource = [[CollectionDataSource alloc] initWithCellIdentifier:@"Cell"];
 }
 - (void)initView{
-    //创建flowLayout
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //行与行间的距离
-    flowLayout.minimumLineSpacing = 10;
-    //列与列间的距离
-    flowLayout.minimumInteritemSpacing = 10;
-    //设置item的大小
-    flowLayout.itemSize = CGSizeMake(110, 200);
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout =[[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake((self.view.frame.size.width-20)*0.5, (self.view.frame.size.width-20)*0.6);
 
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x + 10, self.view.frame.origin.y + 10, self.view.frame.size.width - 20, self.view.frame.size.height - 20) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self.dataSource;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor systemBackgroundColor];
     [self.collectionView registerClass:[Cell class] forCellWithReuseIdentifier:@"Cell"];
     
     self.navigationItem.title = @"选择项目";

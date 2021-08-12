@@ -29,8 +29,8 @@
     
 }
 -(void)addView{
-    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.contentView];
+    self.view.backgroundColor = [UIColor systemBackgroundColor];
     [self.contentView addSubview:self.IDView];
     [self.contentView addSubview:self.nameView];
     [self.contentView addSubview:self.phoneView];
@@ -40,7 +40,8 @@
 {
     if (!_contentView) {
         _contentView = [[UIView alloc]init];
-        _contentView.backgroundColor = [UIColor grayColor];
+        self.contentView.backgroundColor = [UIColor systemBackgroundColor];
+        
     }
     return  _contentView;
 }
@@ -48,7 +49,7 @@
 {
     if (!_IDView) {
         NSString *str = [NSString stringWithFormat:@"ID:%i",self.selfPerson.ID];
-        _IDView = [UILabel LabelWithText:str bgColor:[UIColor whiteColor] textColor:[UIColor blackColor] fontSize:15 numberOfLine:0];
+        _IDView = [UILabel LabelWithText:str bgColor:[UIColor systemBackgroundColor] textColor:[UIColor labelColor] fontSize:15 numberOfLine:0];
         
     }
     return _IDView;
@@ -57,7 +58,7 @@
 {
     if (!_nameView) {
         NSString *str = [NSString stringWithFormat:@"name:%@",self.selfPerson.name];
-        _nameView = [UILabel LabelWithText:str bgColor:[UIColor whiteColor] textColor:[UIColor blackColor] fontSize:15 numberOfLine:0];
+        _nameView = [UILabel LabelWithText:str bgColor:[UIColor systemBackgroundColor] textColor:[UIColor labelColor] fontSize:15 numberOfLine:0];
     }
     return _nameView;
 }
@@ -66,7 +67,7 @@
     if (!_scoreView) {
         NSString *str = [NSString stringWithFormat:@"name:%@",self.selfPerson.phone];
 
-        _scoreView = [UILabel LabelWithText:str bgColor:[UIColor whiteColor] textColor:[UIColor blackColor] fontSize:15 numberOfLine:0];
+        _scoreView = [UILabel LabelWithText:str bgColor:[UIColor systemBackgroundColor] textColor:[UIColor labelColor] fontSize:15 numberOfLine:0];
         
     }
     return _scoreView;
@@ -76,7 +77,7 @@
     if (!_phoneView) {
         NSString *str = [NSString stringWithFormat:@"name:%i",self.selfPerson.score];
 
-        _phoneView = [UILabel LabelWithText:str bgColor:[UIColor whiteColor] textColor:[UIColor blackColor] fontSize:15 numberOfLine:0];
+        _phoneView = [UILabel LabelWithText:str bgColor:[UIColor systemBackgroundColor] textColor:[UIColor labelColor] fontSize:15 numberOfLine:0];
         
     }
     return _phoneView;
@@ -117,4 +118,15 @@
     FMDBoperation *fmdb = [[FMDBoperation alloc] init];
     self.selfPerson = [fmdb findPersonByID:search_id];
 }
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+
+    // trait发生了改变
+
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+    // 执行操作
+        NSLog(@"系统模式切换了");
+    }
+
+    }
 @end

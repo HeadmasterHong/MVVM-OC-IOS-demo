@@ -66,7 +66,9 @@
     
     //自定义顶部导航栏
     self.navigationItem.title = @"选择国家";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]  initWithTitle:@"查看天气" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonWeather)];
+    self.navigationItem.largeTitleDisplayMode = YES;
+    NSArray<UIBarButtonItem *> *rightButtonArr = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]  initWithTitle:@"查看天气" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonWeather)],[[UIBarButtonItem alloc]  initWithTitle:@"切换模式" style:UIBarButtonItemStylePlain target:self action:@selector(changeMode)], nil];
+    self.navigationItem.rightBarButtonItems = rightButtonArr;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]  initWithTitle:@"个人中心" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonCenter)];
 }
 
@@ -99,6 +101,28 @@
     SelfCenterVC *sc = [[SelfCenterVC alloc] init];
     sc.search_id = 358;
     [nvc pushViewController:sc animated:YES];
+}
+
+//深色模式切换按钮
+- (void)changeMode
+{
+    if (@available(iOS 13.0, *)) {
+        UIUserInterfaceStyle mode = UITraitCollection.currentTraitCollection.userInterfaceStyle;
+        if (mode == UIUserInterfaceStyleDark) {
+            NSLog(@"深色模式");
+            UIWindow *window = self.view.window;
+            window.overrideUserInterfaceStyle =  UIUserInterfaceStyleLight;
+//            UITraitCollection.currentTraitCollection.userInterfaceStyle = UIUserInterfaceStyleLight;
+        } else if (mode == UIUserInterfaceStyleLight) {
+            NSLog(@"浅色模式");
+            UIWindow *window = self.view.window;
+            window.overrideUserInterfaceStyle =  UIUserInterfaceStyleDark;
+
+//            UITraitCollection.currentTraitCollection.userInterfaceStyle = UIUserInterfaceStyleDark;
+        } else {
+            NSLog(@"未知模式");
+        }
+    }
 }
 @end
 
