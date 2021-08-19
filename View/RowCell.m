@@ -1,21 +1,21 @@
 //
-//  Cell.m
+//  RowCell.m
 //  NoStoryBoard2
 //
-//  Created by 洪泽林[运营中心] on 2021/7/27.
+//  Created by 洪泽林[运营中心] on 2021/8/18.
 //
 
-#import "Cell.h"
+#import "RowCell.h"
 
-@implementation Cell
+@implementation RowCell
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, CGRectGetWidth(self.frame)-10, CGRectGetWidth(self.frame)-10)];
+        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 200, 200)];
         [self addSubview:self.imgView];
         
-        self.textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, CGRectGetMaxY(self.imgView.frame), CGRectGetWidth(self.frame)-10, 20)];
+        self.textLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.imgView.frame), CGRectGetHeight(self.frame)*0.5, 200, 20)];
 
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.textLabel];
