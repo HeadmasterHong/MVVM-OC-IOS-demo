@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SecondViewModel : NSObject
 - (instancetype)initSelf;
 
-- (NSUInteger)numberOfSections;
-- (NSUInteger)numberOfRowsInSection:(NSInteger)section;
+- (NSUInteger)numberOfSections:(NSInteger)layoutFlag;
+- (NSUInteger)numberOfRowsInSection:(NSInteger)section :(NSInteger)layoutFlag;
 - (id<CellModelProtocol>)cellModelAtIndexPath:(NSIndexPath *)indexPath;
 -(NSInteger)changeLayout:(NSInteger)flag;
 + (void)enumerateCellClassNamesUsingBlock:(void (^)(NSString *cellClassName))block;

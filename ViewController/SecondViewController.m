@@ -80,11 +80,11 @@
 
 #pragma dataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return [self.viewModel numberOfSections];
+    return [self.viewModel numberOfSections:self.layoutFlag];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.viewModel numberOfRowsInSection:section];
+    return [self.viewModel numberOfRowsInSection:section:self.layoutFlag];
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

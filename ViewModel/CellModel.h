@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Protocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CellModel : NSObject
+@interface CellModel : NSObject <CellModelProtocol>
 @property (nonatomic,copy) NSString *eventName;
 @property (nonatomic,copy) NSString *imgPath;
 @property (nonatomic,copy) NSString *cellIdentifier;

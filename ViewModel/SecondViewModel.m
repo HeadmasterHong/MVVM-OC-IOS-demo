@@ -20,12 +20,12 @@ static NSArray *collectionViewCellArrayName() {
 @end
 
 @implementation SecondViewModel
-- (NSUInteger)numberOfSections{
-    return [self.cellModelArry count];
+- (NSUInteger)numberOfSections:(NSInteger)layoutFlag{
+    return 1;
 }
 
-- (NSUInteger)numberOfRowsInSection:(NSInteger)section{
-    return 1;
+- (NSUInteger)numberOfRowsInSection:(NSInteger)section :(NSInteger)layoutFlag{
+    return [self.cellModelArry count];
 }
 
 - (id<CellModelProtocol>)cellModelAtIndexPath:(NSIndexPath *)indexPath{
