@@ -7,24 +7,19 @@
 
 #import "SecondViewModel.h"
 #import "CellModel.h"
+
 static NSArray *collectionViewCellArrayName() {
     return @[@"Cell",
              @"RowCell"
     ];
 }
 
-@interface SecondViewModel()
-
-@property (nonatomic, strong) NSMutableArray *cellModelArry;
-
-@end
-
 @implementation SecondViewModel
-- (NSUInteger)numberOfSections:(NSInteger)layoutFlag{
+- (NSUInteger)numberOfSections{
     return 1;
 }
 
-- (NSUInteger)numberOfRowsInSection:(NSInteger)section :(NSInteger)layoutFlag{
+- (NSUInteger)numberOfRowsInSection:(NSInteger)section{
     return [self.cellModelArry count];
 }
 

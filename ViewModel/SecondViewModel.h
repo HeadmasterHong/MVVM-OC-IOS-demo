@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecondViewModel : NSObject
+@property (nonatomic, strong) NSMutableArray *cellModelArry;
 - (instancetype)initSelf;
 
-- (NSUInteger)numberOfSections:(NSInteger)layoutFlag;
-- (NSUInteger)numberOfRowsInSection:(NSInteger)section :(NSInteger)layoutFlag;
+- (NSUInteger)numberOfSections;
+- (NSUInteger)numberOfRowsInSection:(NSInteger)section;
 - (id<CellModelProtocol>)cellModelAtIndexPath:(NSIndexPath *)indexPath;
 -(NSInteger)changeLayout:(NSInteger)flag;
 + (void)enumerateCellClassNamesUsingBlock:(void (^)(NSString *cellClassName))block;

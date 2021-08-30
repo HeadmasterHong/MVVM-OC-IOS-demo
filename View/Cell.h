@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic ,strong)UIImageView *imgView;
 
 @property(nonatomic ,strong)UILabel *textLabel;
+
++ (CGSize)sizeForCell:(BOOL)isSelected;
 @end
 
 NS_ASSUME_NONNULL_END

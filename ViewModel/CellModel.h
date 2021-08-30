@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *eventName;
 @property (nonatomic,copy) NSString *imgPath;
 @property (nonatomic,copy) NSString *cellIdentifier;
+@property (nonatomic,assign) BOOL isSelected;
 @end
 
 NS_ASSUME_NONNULL_END
