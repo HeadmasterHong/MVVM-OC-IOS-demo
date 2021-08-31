@@ -8,22 +8,49 @@
 #import "RowCell.h"
 
 @implementation RowCell
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 200, 200)];
-        [self addSubview:self.imgView];
+        [self setup];
         
-        self.textLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.imgView.frame), CGRectGetHeight(self.frame)*0.5, 200, 20)];
-
-        self.textLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.textLabel];
     }
     return self;
 }
+
+- (void)setup{
+    self.layer.cornerRadius = 29;
+    self.layer.masksToBounds = YES;
+    
+    self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 58, 58)];
+    self.imgView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+    [self addSubview:self.imgView];
+    
+}
+
 - (void)configureByModel:(id<CellModelProtocol>)cellModel{
     self.imgView.image = [UIImage imageNamed:cellModel.imgPath];
-    self.textLabel.text = cellModel.eventName;
+    [self updateWithStatus:cellModel.isSelected];
+}
+
+-(void)updateWithStatus:(BOOL)isSelected{
+    if (isSelected) {
+        self.imgView.frame = CGRectMake(0, 0, 64, 64);
+        self.layer.cornerRadius = 32;
+        
+    }else{
+        self.imgView.frame = CGRectMake(0, 0, 58, 58);
+        self.layer.cornerRadius = 29;
+    }
+}
+
++(CGSize)sizeForCell:(BOOL)isSelected{
+    if (isSelected) {
+        return CGSizeMake(64, 64);
+    }else{
+        return CGSizeMake(58, 58);
+        
+    }
 }
 @end

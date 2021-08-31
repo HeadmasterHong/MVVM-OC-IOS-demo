@@ -6,14 +6,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SecondViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol VcBDelegate
-- (void) sendValue:(NSString *)value;
+- (void) receiveValue:(NSString *)value;
 @end
 
 @interface SecondViewController : UIViewController
+@property (nonatomic, strong) SecondViewModel *viewModel;
 
 @property (nonatomic, weak) id  delegate;
 

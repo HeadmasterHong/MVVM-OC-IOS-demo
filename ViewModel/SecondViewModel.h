@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecondViewModel : NSObject
+@property (nonatomic, strong) NSMutableArray *cellModelArry;
 - (instancetype)initSelf;
 
 - (NSUInteger)numberOfSections;

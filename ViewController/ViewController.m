@@ -43,6 +43,7 @@
         cell.imageView.image = [UIImage imageNamed:imagePath];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }];
+    //天气网络请求
     self.weatherViewModel = [[WeatherViewModel alloc] initWithSucc:^(id  _Nonnull datas) {
         UIAlertController *uac = [UIAlertController alertControllerWithTitle:@"success" message:datas preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *noaction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -81,7 +82,7 @@
 }
 
 //实现SecondView的delegate
-- (void)sendValue:(NSString *)value
+- (void)receiveValue:(NSString *)value
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
     cell.textLabel.text = [NSString stringWithFormat:@"%@+%@",cell.textLabel.text,value];

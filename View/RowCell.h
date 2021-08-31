@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RowCell : UICollectionViewCell <CellProtocol>
 @property(nonatomic ,strong)UIImageView *imgView;
++ (CGSize)sizeForCell;
 
-@property(nonatomic ,strong)UILabel *textLabel;
 @end
 
 NS_ASSUME_NONNULL_END

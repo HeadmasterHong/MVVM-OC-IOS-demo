@@ -6,11 +6,6 @@
 //
 
 #import "CellModel.h"
-#import "Protocol.h"
-@interface CellModel () <CellModelProtocol>
-
-@end
-
 
 @implementation CellModel
 @end
