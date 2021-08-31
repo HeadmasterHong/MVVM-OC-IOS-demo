@@ -10,6 +10,7 @@
 #import "RowCell.h"
 #import "CustomFlowLayout.h"
 #import "ReactiveObjC.h"
+#import "LightArtView.h"
 
 @interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
@@ -102,6 +103,10 @@
     
     self.navigationItem.title = @"选择项目";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]  initWithTitle:@"切换布局" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonLayout)];
+    
+    //LightArtView
+    LightArtView *lightArtView = [[LightArtView alloc] initWithFrame:CGRectMake(0, 200, 100, 200) url:@"local://LightArtTest.json"];
+    [self.view addSubview:lightArtView];
 }
 
 - (void)registerCell:(UICollectionView *)collectionView
