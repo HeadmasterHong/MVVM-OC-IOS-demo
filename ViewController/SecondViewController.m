@@ -18,9 +18,11 @@
 @property (nonatomic, strong) id<CellModelProtocol> selectedModel;
 @property (nonatomic, assign) NSInteger layoutFlag;
 @property (nonatomic, assign) NSInteger headerStickyWidth;
+@property (nonatomic, assign) NSInteger maxLength;
 @property (nonatomic, assign) BOOL floatFlag;
 @property (nonatomic, assign) BOOL canParentViewScroll;
 @property (nonatomic, assign) BOOL canChildViewScroll;
+
 
 @end
 
@@ -59,6 +61,7 @@
     //页面属性
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.headerStickyWidth = 64;
+    self.maxLength = 648;
     
     self.canParentViewScroll = YES;
     self.canChildViewScroll = NO;
@@ -157,58 +160,39 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat mainContentOffsetX = _containerView.contentOffset.x;
+    CGFloat childContenOffSetX = _collectionView.contentOffset.x;
     
     if (scrollView == self.containerView) {
-        NSLog(@"parentViewScrolling");
-        if (mainContentOffsetX > _headerStickyWidth) {
+        NSLog(@"parentScrolling");
+        //悬停也能滑动 让用户感知到一体的滑动导航
+        if(mainContentOffsetX > _headerStickyWidth){
             [_containerView setContentOffset:CGPointMake(_headerStickyWidth, 0)];
-        }else if (mainContentOffsetX < 0){
-//            [_containerView setContentOffset:CGPointMake(0, 0)];
+            [_collectionView setContentOffset:CGPointMake(childContenOffSetX+mainContentOffsetX-_headerStickyWidth, 0)];
+        }else if (mainContentOffsetX < _headerStickyWidth){
+            if (childContenOffSetX != 0 ) {
+                [_containerView setContentOffset:CGPointMake(_headerStickyWidth, 0)];
+                [_collectionView setContentOffset:CGPointMake(childContenOffSetX+mainContentOffsetX-_headerStickyWidth, 0)];
+            }
         }
-    }else{
-        CGFloat currentOffsetX = scrollView.contentOffset.x;
-        NSLog(@"childViewScrolling");
-        if (currentOffsetX == 0) {
-            return;
-        }
+            
         
-        if (currentOffsetX < 0) {
-            if (mainContentOffsetX > 0) {
-                [_containerView setContentOffset:CGPointMake(mainContentOffsetX+currentOffsetX, 0)];
-                [scrollView setContentOffset:CGPointMake(0, 0)];
+    }else{
+        NSLog(@"childScrolling");
+        if (mainContentOffsetX < _headerStickyWidth) {
+            //没吸顶前子View先不动 让父view代替动
+            [_collectionView setContentOffset:CGPointMake(0, 0)];
+            [_containerView setContentOffset:CGPointMake(mainContentOffsetX+childContenOffSetX, 0)];
+        }else if (mainContentOffsetX == _headerStickyWidth){
+            if (childContenOffSetX < 0) {
+                [_collectionView setContentOffset:CGPointMake(0, 0)];
+                [_containerView setContentOffset:CGPointMake(mainContentOffsetX+childContenOffSetX, 0)];
             }
-        }else if (currentOffsetX > 0){
-            if (mainContentOffsetX < _headerStickyWidth) {
-                //没到顶子View先不能动 让父view代替他动
-                [scrollView setContentOffset:CGPointMake(0, 0)];
-                [_containerView setContentOffset:CGPointMake(mainContentOffsetX+currentOffsetX, 0)];
-                
-            }
+        }
+        //限制可滑动的最大距离
+        if (childContenOffSetX > _maxLength){
+            [_collectionView setContentOffset:CGPointMake(_maxLength, 0)];
         }
     }
-    
-    
-//           //禁止右划
-//
-//           static float newx = 0;
-//
-//           static float oldx = 0;
-//
-//           newx= scrollView.contentOffset.x ;
-//
-//
-//
-//           if (newx < oldx) {
-//
-//               self.collectionView.scrollEnabled = NO;
-//
-//               self.collectionView.scrollEnabled = YES;
-//
-//           }
-//
-//
-//
-//           oldx = newx;
 }
 
 
