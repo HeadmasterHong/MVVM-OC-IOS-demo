@@ -11,6 +11,7 @@
 #import "CustomFlowLayout.h"
 #import "ReactiveObjC.h"
 #import "LightArtView.h"
+#import "CarouselViewController.h"
 
 @interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
@@ -102,11 +103,10 @@
     
     
     self.navigationItem.title = @"选择项目";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]  initWithTitle:@"切换布局" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonLayout)];
+    NSArray<UIBarButtonItem *> *rightButtonArr = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]  initWithTitle:@"切换布局" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonLayout)],[[UIBarButtonItem alloc]  initWithTitle:@"轮播视图" style:UIBarButtonItemStylePlain target:self action:@selector(routeToarousel)], nil];
+    self.navigationItem.rightBarButtonItems = rightButtonArr; 
     
-    //LightArtView
-    LightArtView *lightArtView = [[LightArtView alloc] initWithFrame:CGRectMake(0, 200, 100, 200) url:@"local://LightArtTest.json"];
-    [self.view addSubview:lightArtView];
+
 }
 
 - (void)registerCell:(UICollectionView *)collectionView
@@ -118,9 +118,15 @@
     }];
 }
 
-- (void)clickButtonLayout{
+- (void)clickButtonLayout {
     self.layoutFlag = [self.viewModel changeLayout:self.layoutFlag];
     [self.collectionView reloadData];
+}
+
+- (void)routeToarousel {
+    UINavigationController *nvc = self.navigationController;
+    CarouselViewController *cvc = [[CarouselViewController alloc] init];
+    [nvc pushViewController:cvc animated:YES];
 }
 
 #pragma mark collectionview delegate
