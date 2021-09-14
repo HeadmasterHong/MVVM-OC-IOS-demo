@@ -11,8 +11,8 @@
 #import "CustomFlowLayout.h"
 #import "ReactiveObjC.h"
 #import "LightArtView.h"
-#import "CarouselViewController.h"
-
+#import "HZLLoopScrollView.h"
+#import "LoopPageView.h"
 @interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *containerView;
@@ -24,6 +24,8 @@
 @property (nonatomic, assign) BOOL floatFlag;
 @property (nonatomic, assign) BOOL canParentViewScroll;
 @property (nonatomic, assign) BOOL canChildViewScroll;
+@property (nonatomic, strong)NSArray *imgUrls;
+@property (nonatomic, strong)NSArray *titles;
 
 
 @end
@@ -34,24 +36,14 @@
     [super viewDidLoad];
         [self bindModel];
         [self initView];
-//    [self observeContentOffset];
 }
 
-//- (void)observeContentOffset
-//{
-//    @weakify(self)
-//    [[RACObserve(self.collectionView,contentOffset) deliverOnMainThread] subscribeNext:^(NSValue *value) {
-//        @strongify(self)
-//        if (self.collectionView.contentOffset.x >= 120) {
-////            self.collectionView.scrollEnabled = NO;
-//            self.floatFlag = YES;
-//        }
-//    }];
-//}
 
 - (void)bindModel{
     self.viewModel = [[SecondViewModel alloc] initSelf];
     self.layoutFlag = 0;//初始布局
+    self.imgUrls = @[@"archery.gif", @"athletics.gif", @"badminton.gif"];
+    self.titles = @[@"archery.gif", @"athletics.gif", @"badminton.gif"];
 }
 
 - (void)initView{
@@ -101,10 +93,23 @@
     [self.containerView addSubview:label2];
     [self.view addSubview:self.containerView];
     
+    //轮播
+    LoopPageView *loopPageView = [[LoopPageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
+                                                              imgArr:_imgUrls
+                                                         preSetIndex:1
+                                                        loopCallBack:^(NSInteger index) {
+        
+    }];
+    [self.view addSubview:loopPageView];
+    
+//    HZLLoopScrollView *loop = [HZLLoopScrollView loopScrollViewWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
+//                                                                 imgUrls:_imgUrls titles:_titles timeInterval:3 selectIndex:0 didSelect:^(NSInteger atIndex) {
+//
+//    }];
+//    [self.view addSubview:loop];
+    
     
     self.navigationItem.title = @"选择项目";
-    NSArray<UIBarButtonItem *> *rightButtonArr = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]  initWithTitle:@"切换布局" style:UIBarButtonItemStylePlain target:self action:@selector(clickButtonLayout)],[[UIBarButtonItem alloc]  initWithTitle:@"轮播视图" style:UIBarButtonItemStylePlain target:self action:@selector(routeToarousel)], nil];
-    self.navigationItem.rightBarButtonItems = rightButtonArr; 
     
 
 }
@@ -123,11 +128,6 @@
     [self.collectionView reloadData];
 }
 
-- (void)routeToarousel {
-    UINavigationController *nvc = self.navigationController;
-    CarouselViewController *cvc = [[CarouselViewController alloc] init];
-    [nvc pushViewController:cvc animated:YES];
-}
 
 #pragma mark collectionview delegate
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

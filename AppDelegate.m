@@ -9,14 +9,24 @@
 #import "ViewController.h"
 @interface AppDelegate ()
 
+//@property (nonatomic, strong)
+
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(screenDidConnectNotification) name: UIScreenDidConnectNotification object: nil];
     
-    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    NSArray<UIScreenMode *> *availableModes = [[UIScreen mainScreen] availableModes];
+    NSLog(@"%lu",availableModes.count);
+    NSLog(@"%@", [UIScreen screens]);
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.screen = [UIScreen mainScreen];
     self.window.backgroundColor = [UIColor whiteColor];
     
     ViewController *vc = [[ViewController alloc]init];
@@ -29,6 +39,28 @@
     
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void)screenDidConnectNotification {
+    CGSize size960;
+    size960.height = 0;
+    size960.width  = 0;
+    UIScreenMode *screenMode960 = nil;
+    UIScreen *secondScreen = [[UIScreen screens] objectAtIndex:0];
+    for(int i = 0; i < [[secondScreen availableModes] count]; i++)
+    {
+        NSLog(@"%@",[UIScreen screens]);
+       UIScreenMode *current = [[[[UIScreen screens] objectAtIndex:0] availableModes] objectAtIndex: i];
+       NSLog(@"%@",current);
+
+       if (current.size.width == 960.0 && current.size.height == 2079.0)
+       {
+           size960 = current.size;
+           screenMode960 = current;
+           break;
+       }
+    }
+    secondScreen.currentMode = screenMode960;
 }
 
 

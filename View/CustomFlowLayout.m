@@ -48,6 +48,7 @@
     
     proposedContentOffset.x += minDelta ;
     
+    
     return proposedContentOffset;
 }
 @end

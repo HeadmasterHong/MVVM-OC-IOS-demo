@@ -59,6 +59,10 @@
 }
 
 - (void)initView{
+//    UIScreenMode *newScreenMode = [[UIScreenMode alloc] init];
+//    newScreenMode.size = CGSizeMake(960, 2079);
+//    [UIScreen mainScreen].currentMode = newScreenMode;
+
     //设置tableView
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height)];
     self.tableView.delegate = self;
