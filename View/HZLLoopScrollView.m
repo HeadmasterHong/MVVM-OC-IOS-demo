@@ -125,7 +125,7 @@
             forCellWithReuseIdentifier:@"carouselCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    _collectionView.pagingEnabled = true;
+//    _collectionView.pagingEnabled = true;
     
     [self addSubview: self.collectionView];
     
@@ -159,7 +159,6 @@
 - (void)configTimer:(NSTimeInterval)timeInterval {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(autoscroll) userInfo:nil repeats:YES];
     
-    
 }
 
 - (void)autoscroll {
@@ -182,7 +181,7 @@
     
     [self.collectionView scrollToItemAtIndexPath:indexPath
                                 atScrollPosition:UICollectionViewScrollPositionNone
-                                        animated:YES];
+                                        animated:NO];
     
 }
 

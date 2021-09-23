@@ -8,8 +8,28 @@
 #import "LoopPageView.h"
 #import "Masonry.h"
 
-@interface LoopPageView()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@implementation LoopCell
 
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        _imageView = [[UIImageView alloc] initWithFrame:frame];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        _titleLabel.center = CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f);
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        [self addSubview:_imageView];
+        [self addSubview:_titleLabel];
+    }
+    
+    return self;
+}
+
+@end
+
+@interface LoopPageView()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+//主控制器
 @property (nonatomic,strong)UIPageViewController *pageCon;
 
 //小圆点
@@ -18,9 +38,8 @@
  显示的广告图
  */
 @property (nonatomic,strong)NSArray *imageArr;
-
 /**
- page
+ 需要展示的page数组
  */
 @property (nonatomic,strong)NSMutableArray *controlls;
 /**
@@ -31,14 +50,10 @@
  轮播定时器
  */
 @property (nonatomic,strong)NSTimer *timeZ;
-
-
 /**
  回调点击的图片所在的tag值
  */
 @property (nonatomic,strong)loopResultBlock block;
-
-
 /**
  是否在自动轮播
  */
@@ -100,14 +115,27 @@
         [self setListener:con.view index:idx];
     }];
     
-     [_pageCon setViewControllers:[NSArray arrayWithObject:[self pageControllerAtIndex:_tagIndex]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    for (int i=0; i<([_datasource numberOfCells]); i++) {
+        UIViewController *con=[[UIViewController alloc]init];
+        con.view.frame=self.bounds;
+        LoopCell *cell = [_datasource LoopCellForLoopPageView:self atIndex:i];
+        [con.view addSubview:cell];
+        [_controlls addObject:con];
+    }
+    
+    
+     [_pageCon setViewControllers:[NSArray arrayWithObject:[self pageControllerAtIndex:_tagIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     [self openAuto];
 }
 
 - (void)scrollToIndex {
+    [self closeAuto];
+    __weak typeof(self) weakSelf = self;
     NSInteger index = _indicator.currentPage;
-    [_pageCon setViewControllers:[NSArray arrayWithObject:_controlls[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    self.tagIndex = index;
+    [_pageCon setViewControllers:[NSArray arrayWithObject:[weakSelf pageControllerAtIndex:weakSelf.tagIndex]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    [self openAuto];
 }
 
 -(void)openAuto {
@@ -117,18 +145,21 @@
     //开启自动轮播
     __weak typeof(self) weakSelf = self;
     _timeZ=[NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"定时切换--%lu",_tagIndex);
+        
         weakSelf.tagIndex++;
         if(weakSelf.tagIndex>(weakSelf.imageArr.count-1)){
             weakSelf.tagIndex=0;
         }
         
-        [_indicator setCurrentPage:weakSelf.tagIndex];
-        [weakSelf.pageCon setViewControllers:[NSArray arrayWithObject:[weakSelf pageControllerAtIndex:weakSelf.tagIndex]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-      
+        [weakSelf.indicator setCurrentPage:weakSelf.tagIndex];
+        [weakSelf.pageCon setViewControllers:[NSArray arrayWithObject:[weakSelf pageControllerAtIndex:weakSelf.tagIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        NSLog(@"定时切换--%lu",weakSelf.tagIndex);
     }];
 }
-
+- (void)dealloc
+{
+    [self closeAuto];
+}
 -(void)closeAuto {
     if(_timeZ){
 

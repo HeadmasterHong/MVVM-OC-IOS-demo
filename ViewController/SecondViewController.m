@@ -13,7 +13,8 @@
 #import "LightArtView.h"
 #import "HZLLoopScrollView.h"
 #import "LoopPageView.h"
-@interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+#import "ZLSlider.h"
+@interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, ZLSliderDatasource, ZLSliderDelegate, LoopScroolViewDatasource>
 
 @property (nonatomic, strong) UIScrollView *containerView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -42,8 +43,8 @@
 - (void)bindModel{
     self.viewModel = [[SecondViewModel alloc] initSelf];
     self.layoutFlag = 0;//初始布局
-    self.imgUrls = @[@"archery.gif", @"athletics.gif", @"badminton.gif"];
-    self.titles = @[@"archery.gif", @"athletics.gif", @"badminton.gif"];
+    self.imgUrls = @[@"003.jpeg", @"004.jpeg", @"005.jpeg"];
+    self.titles = @[@"archery", @"athletics", @"badminton"];
 }
 
 - (void)initView{
@@ -93,13 +94,20 @@
     [self.containerView addSubview:label2];
     [self.view addSubview:self.containerView];
     
-    //轮播
+//    ZLSlider *slider = [[ZLSlider alloc] initWithFrame:CGRectMake(0, 300, self.view.bounds.size.width, 200)];
+//    slider.datasource = self;
+//    slider.delegate = self;
+//    slider.playInCircle = YES;
+//    [self.view addSubview:slider];
+//    [slider reloadData];
+//    //轮播
     LoopPageView *loopPageView = [[LoopPageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
                                                               imgArr:_imgUrls
-                                                         preSetIndex:1
+                                                         preSetIndex:0
                                                         loopCallBack:^(NSInteger index) {
-        
+
     }];
+    loopPageView.datasource = self;
     [self.view addSubview:loopPageView];
     
 //    HZLLoopScrollView *loop = [HZLLoopScrollView loopScrollViewWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
@@ -107,6 +115,7 @@
 //
 //    }];
 //    [self.view addSubview:loop];
+    
     
     
     self.navigationItem.title = @"选择项目";
@@ -244,5 +253,41 @@ return UIEdgeInsetsMake(0, 5, 0, 5);//分别为上、左、下、右
     return [NSClassFromString(cellModel.cellIdentifier) sizeForCell:cellModel.isSelected];
 
 
+}
+
+#pragma mark -looppageview datasource
+
+-(ZLSliderCell *)zl_cellForSlider:(ZLSlider *)slider atIndex:(NSUInteger)idx {
+    ZLSliderCell *cell = [slider dequeReuableCell];
+    
+    if (!cell) {
+        cell = [[ZLSliderCell alloc] initWithSlider:slider];
+    }
+    
+    //在这里设置图片
+    cell.imageView.image = nil;
+    cell.titleLabel.text = [@(idx) stringValue];
+    if (idx % 2 == 0) {
+        cell.imageView.backgroundColor = [UIColor greenColor];
+    }else{
+        cell.imageView.backgroundColor = [UIColor blueColor];
+    }
+    
+    return cell;
+}
+
+-(NSUInteger)zl_numberOfCells {
+    return 3;
+}
+
+-(LoopCell *)LoopCellForLoopPageView:(LoopPageView *)loopPageView atIndex:(NSUInteger)idx {
+    LoopCell *cell = [[LoopCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 300)];
+    cell.imageView.image = [UIImage imageNamed:_imgUrls[idx]];
+    cell.titleLabel.text = _titles[idx];
+    return cell;
+}
+
+- (NSUInteger)numberOfCells {
+    return 3;
 }
 @end
