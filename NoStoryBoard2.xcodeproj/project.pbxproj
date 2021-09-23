@@ -61,7 +61,8 @@
 		864C4B6F26B01D7200B4109A /* canoe-slalom.gif in Resources */ = {isa = PBXBuildFile; fileRef = 864C4B6626B01D7200B4109A /* canoe-slalom.gif */; };
 		864C4B7226B01DC200B4109A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 864C4B7126B01DC200B4109A /* SecondViewController.m */; };
 		864C4B7526B01E4D00B4109A /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 864C4B7426B01E4D00B4109A /* Cell.m */; };
-		865D80A426E85EF500470E9D /* CarouselViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865D80A326E85EF500470E9D /* CarouselViewController.m */; };
+		865D80A726E86ECF00470E9D /* HZLLoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 865D80A626E86ECF00470E9D /* HZLLoopScrollView.m */; };
+		865D810326EAF52700470E9D /* LoopPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 865D810226EAF52700470E9D /* LoopPageView.m */; };
 		8665F3CA26C27BEB00E5B90B /* MainTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8665F3C926C27BEB00E5B90B /* MainTableDataSource.m */; };
 		8665F3CD26C283BF00E5B90B /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8665F3CC26C283BF00E5B90B /* TableCell.m */; };
 		8665F3D026C284B500E5B90B /* TeamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8665F3CF26C284B500E5B90B /* TeamModel.m */; };
@@ -79,6 +80,10 @@
 		869B944426BA396C002F89C9 /* UILabel+LabelExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 869B944226BA396C002F89C9 /* UILabel+LabelExtension.m */; };
 		86BE8FC626C36A0300411418 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BE8FC526C36A0300411418 /* WeatherViewModel.m */; };
 		86BE8FC926C36ACA00411418 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BE8FC826C36ACA00411418 /* WeatherModel.m */; };
+		86C6917726F1E6DF00B1FC5E /* 004.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 86C6917426F1E6DF00B1FC5E /* 004.jpeg */; };
+		86C6917826F1E6DF00B1FC5E /* 005.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 86C6917526F1E6DF00B1FC5E /* 005.jpeg */; };
+		86C6917926F1E6DF00B1FC5E /* 003.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 86C6917626F1E6DF00B1FC5E /* 003.jpeg */; };
+		86C6917F26F1F6D100B1FC5E /* ZLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6917D26F1F6D000B1FC5E /* ZLSlider.m */; };
 		FE2704B1F60DEDE67EB8CB24 /* Pods_NoStoryBoard2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91DC33F0C6E9170017179EA9 /* Pods_NoStoryBoard2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -169,8 +174,10 @@
 		864C4B7126B01DC200B4109A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		864C4B7326B01E4D00B4109A /* Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		864C4B7426B01E4D00B4109A /* Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
-		865D80A226E85EF500470E9D /* CarouselViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselViewController.h; sourceTree = "<group>"; };
-		865D80A326E85EF500470E9D /* CarouselViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselViewController.m; sourceTree = "<group>"; };
+		865D80A526E86ECF00470E9D /* HZLLoopScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HZLLoopScrollView.h; sourceTree = "<group>"; };
+		865D80A626E86ECF00470E9D /* HZLLoopScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HZLLoopScrollView.m; sourceTree = "<group>"; };
+		865D810126EAF52700470E9D /* LoopPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoopPageView.h; sourceTree = "<group>"; };
+		865D810226EAF52700470E9D /* LoopPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoopPageView.m; sourceTree = "<group>"; };
 		8665F3C826C27BEB00E5B90B /* MainTableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableDataSource.h; sourceTree = "<group>"; };
 		8665F3C926C27BEB00E5B90B /* MainTableDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableDataSource.m; sourceTree = "<group>"; };
 		8665F3CB26C283BF00E5B90B /* TableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
@@ -204,6 +211,11 @@
 		86BE8FC526C36A0300411418 /* WeatherViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewModel.m; sourceTree = "<group>"; };
 		86BE8FC726C36ACA00411418 /* WeatherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherModel.h; sourceTree = "<group>"; };
 		86BE8FC826C36ACA00411418 /* WeatherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherModel.m; sourceTree = "<group>"; };
+		86C6917426F1E6DF00B1FC5E /* 004.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 004.jpeg; sourceTree = "<group>"; };
+		86C6917526F1E6DF00B1FC5E /* 005.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 005.jpeg; sourceTree = "<group>"; };
+		86C6917626F1E6DF00B1FC5E /* 003.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 003.jpeg; sourceTree = "<group>"; };
+		86C6917D26F1F6D000B1FC5E /* ZLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSlider.m; sourceTree = "<group>"; };
+		86C6917E26F1F6D000B1FC5E /* ZLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSlider.h; sourceTree = "<group>"; };
 		91DC33F0C6E9170017179EA9 /* Pods_NoStoryBoard2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoStoryBoard2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE2F0D713DBA7CFE747429E /* Pods-NoStoryBoard2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoStoryBoard2Tests.release.xcconfig"; path = "Target Support Files/Pods-NoStoryBoard2Tests/Pods-NoStoryBoard2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AF3818E39FB532175D7D106B /* Pods-NoStoryBoard2-NoStoryBoard2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoStoryBoard2-NoStoryBoard2UITests.debug.xcconfig"; path = "Target Support Files/Pods-NoStoryBoard2-NoStoryBoard2UITests/Pods-NoStoryBoard2-NoStoryBoard2UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +265,9 @@
 		864C4AD426B0046E00B4109A = {
 			isa = PBXGroup;
 			children = (
+				86C6917626F1E6DF00B1FC5E /* 003.jpeg */,
+				86C6917426F1E6DF00B1FC5E /* 004.jpeg */,
+				86C6917526F1E6DF00B1FC5E /* 005.jpeg */,
 				864C4ADF26B0046E00B4109A /* NoStoryBoard2 */,
 				864C4AFB26B0047100B4109A /* NoStoryBoard2Tests */,
 				864C4B0626B0047200B4109A /* NoStoryBoard2UITests */,
@@ -374,6 +389,8 @@
 		8665F3C326C266A100E5B90B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				86C6917E26F1F6D000B1FC5E /* ZLSlider.h */,
+				86C6917D26F1F6D000B1FC5E /* ZLSlider.m */,
 				8665F3CB26C283BF00E5B90B /* TableCell.h */,
 				8665F3CC26C283BF00E5B90B /* TableCell.m */,
 				864C4B7326B01E4D00B4109A /* Cell.h */,
@@ -382,6 +399,10 @@
 				8690889926CD1F6A0099DEFE /* RowCell.m */,
 				869088B126D61A560099DEFE /* CustomFlowLayout.h */,
 				869088B226D61A560099DEFE /* CustomFlowLayout.m */,
+				865D80A526E86ECF00470E9D /* HZLLoopScrollView.h */,
+				865D80A626E86ECF00470E9D /* HZLLoopScrollView.m */,
+				865D810126EAF52700470E9D /* LoopPageView.h */,
+				865D810226EAF52700470E9D /* LoopPageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,8 +447,6 @@
 				864C4B7126B01DC200B4109A /* SecondViewController.m */,
 				869B943826BA2F5F002F89C9 /* SelfCenterVC.h */,
 				869B943926BA2F5F002F89C9 /* SelfCenterVC.m */,
-				865D80A226E85EF500470E9D /* CarouselViewController.h */,
-				865D80A326E85EF500470E9D /* CarouselViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -579,6 +598,7 @@
 				864C4B4526B007B000B4109A /* SouthKorea.png in Resources */,
 				864C4AED26B0047100B4109A /* Assets.xcassets in Resources */,
 				864C4B4D26B007B000B4109A /* Italy.png in Resources */,
+				86C6917726F1E6DF00B1FC5E /* 004.jpeg in Resources */,
 				864C4B4026B007B000B4109A /* CoteDIvoire.png in Resources */,
 				864C4B5326B007B000B4109A /* Slovakia.png in Resources */,
 				864C4B4926B007B000B4109A /* Spain.png in Resources */,
@@ -595,8 +615,10 @@
 				864C4B6B26B01D7200B4109A /* basketball.gif in Resources */,
 				864C4B5726B007B500B4109A /* team.plist in Resources */,
 				864C4B3826B007B000B4109A /* SouthAfrica.png in Resources */,
+				86C6917926F1E6DF00B1FC5E /* 003.jpeg in Resources */,
 				864C4B3C26B007B000B4109A /* USA.png in Resources */,
 				864C4B4326B007B000B4109A /* NewZealand.png in Resources */,
+				86C6917826F1E6DF00B1FC5E /* 005.jpeg in Resources */,
 				864C4B3D26B007B000B4109A /* Australia.png in Resources */,
 				864C4B5526B007B000B4109A /* Mexico.png in Resources */,
 				864C4B4426B007B000B4109A /* Switzerland.png in Resources */,
@@ -739,14 +761,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				86BE8FC926C36ACA00411418 /* WeatherModel.m in Sources */,
+				865D80A726E86ECF00470E9D /* HZLLoopScrollView.m in Sources */,
 				869B944126BA35A7002F89C9 /* UIButton+ButtonExtension.m in Sources */,
 				8665F3CA26C27BEB00E5B90B /* MainTableDataSource.m in Sources */,
 				869088AA26CE080D0099DEFE /* CellModel.m in Sources */,
 				864C4B7226B01DC200B4109A /* SecondViewController.m in Sources */,
+				86C6917F26F1F6D100B1FC5E /* ZLSlider.m in Sources */,
 				869088A626CDF69D0099DEFE /* SecondViewModel.m in Sources */,
-				865D80A426E85EF500470E9D /* CarouselViewController.m in Sources */,
 				869B943426B3AF17002F89C9 /* NSDictionary+NSDCompare.m in Sources */,
 				8665F3CD26C283BF00E5B90B /* TableCell.m in Sources */,
+				865D810326EAF52700470E9D /* LoopPageView.m in Sources */,
 				869B943D26BA304E002F89C9 /* FMDBoperation.m in Sources */,
 				869B943726B79F34002F89C9 /* Person.m in Sources */,
 				869B944426BA396C002F89C9 /* UILabel+LabelExtension.m in Sources */,
