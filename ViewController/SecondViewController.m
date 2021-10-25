@@ -43,7 +43,7 @@
 - (void)bindModel{
     self.viewModel = [[SecondViewModel alloc] initSelf];
     self.layoutFlag = 0;//初始布局
-    self.imgUrls = @[@"003.jpeg", @"004.jpeg", @"005.jpeg"];
+    self.imgUrls = @[@"007.jpg", @"008.jpg", @"009.png"];
     self.titles = @[@"archery", @"athletics", @"badminton"];
 }
 
