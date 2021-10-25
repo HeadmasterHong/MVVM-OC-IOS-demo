@@ -1,6 +1,0 @@
-framework module LightArt {
-  umbrella header "LightArt-umbrella.h"
-
-  export *
-  module * { export * }
-}
