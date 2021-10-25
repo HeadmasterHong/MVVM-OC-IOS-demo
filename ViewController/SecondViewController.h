@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SecondViewController : UIViewController
+
 @property (nonatomic, strong) SecondViewModel *viewModel;
 
 @property (nonatomic, weak) id  delegate;

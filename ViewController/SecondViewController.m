@@ -11,10 +11,8 @@
 #import "CustomFlowLayout.h"
 #import "ReactiveObjC.h"
 #import "LightArtView.h"
-#import "HZLLoopScrollView.h"
 #import "LoopPageView.h"
-#import "ZLSlider.h"
-@interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, ZLSliderDatasource, ZLSliderDelegate, LoopScroolViewDatasource>
+@interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, LoopScroolViewDatasource>
 
 @property (nonatomic, strong) UIScrollView *containerView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -61,25 +59,26 @@
     self.canParentViewScroll = YES;
     self.canChildViewScroll = NO;
     
-    //创建layout布局类
-    CustomFlowLayout *layout = [[CustomFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
-    //右侧容器
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(128, 0, self.view.frame.size.width-64, 100) collectionViewLayout:layout];
-    [self registerCell:self.collectionView];
-    self.collectionView.alwaysBounceHorizontal =YES;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
-    
-    //外层容器
-    self.containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-    self.containerView.contentSize = CGSizeMake(1000, 100);
-    self.containerView.delegate = self;
-    
+    {//顶部悬停嵌套ScrollView
+        //创建layout布局类
+        CustomFlowLayout *layout = [[CustomFlowLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        //右侧容器
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(128, 0, self.view.frame.size.width-64, 100) collectionViewLayout:layout];
+        [self registerCell:self.collectionView];
+        self.collectionView.alwaysBounceHorizontal =YES;
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+        self.collectionView.showsVerticalScrollIndicator = NO;
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        self.collectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
+        
+        //外层容器
+        self.containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+        self.containerView.contentSize = CGSizeMake(1000, 100);
+        self.containerView.delegate = self;
+    }
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 64, 64)];
     label1.textColor = [UIColor redColor];
     label1.text = @"图标";
@@ -94,13 +93,6 @@
     [self.containerView addSubview:label2];
     [self.view addSubview:self.containerView];
     
-//    ZLSlider *slider = [[ZLSlider alloc] initWithFrame:CGRectMake(0, 300, self.view.bounds.size.width, 200)];
-//    slider.datasource = self;
-//    slider.delegate = self;
-//    slider.playInCircle = YES;
-//    [self.view addSubview:slider];
-//    [slider reloadData];
-//    //轮播
     LoopPageView *loopPageView = [[LoopPageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
                                                               imgArr:_imgUrls
                                                          preSetIndex:0
@@ -109,18 +101,7 @@
     }];
     loopPageView.datasource = self;
     [self.view addSubview:loopPageView];
-    
-//    HZLLoopScrollView *loop = [HZLLoopScrollView loopScrollViewWithFrame:CGRectMake((self.view.bounds.size.width-333)/2, 300, 333, 142)
-//                                                                 imgUrls:_imgUrls titles:_titles timeInterval:3 selectIndex:0 didSelect:^(NSInteger atIndex) {
-//
-//    }];
-//    [self.view addSubview:loop];
-    
-    
-    
     self.navigationItem.title = @"选择项目";
-    
-
 }
 
 - (void)registerCell:(UICollectionView *)collectionView
@@ -255,30 +236,7 @@ return UIEdgeInsetsMake(0, 5, 0, 5);//分别为上、左、下、右
 
 }
 
-#pragma mark -looppageview datasource
-
--(ZLSliderCell *)zl_cellForSlider:(ZLSlider *)slider atIndex:(NSUInteger)idx {
-    ZLSliderCell *cell = [slider dequeReuableCell];
-    
-    if (!cell) {
-        cell = [[ZLSliderCell alloc] initWithSlider:slider];
-    }
-    
-    //在这里设置图片
-    cell.imageView.image = nil;
-    cell.titleLabel.text = [@(idx) stringValue];
-    if (idx % 2 == 0) {
-        cell.imageView.backgroundColor = [UIColor greenColor];
-    }else{
-        cell.imageView.backgroundColor = [UIColor blueColor];
-    }
-    
-    return cell;
-}
-
--(NSUInteger)zl_numberOfCells {
-    return 3;
-}
+#pragma mark -LoopPageView datasource
 
 -(LoopCell *)LoopCellForLoopPageView:(LoopPageView *)loopPageView atIndex:(NSUInteger)idx {
     LoopCell *cell = [[LoopCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 300)];

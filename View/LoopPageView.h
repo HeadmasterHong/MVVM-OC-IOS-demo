@@ -13,8 +13,10 @@
 typedef void(^loopResultBlock)(NSInteger index);
 
 @protocol LoopScroolViewDatasource <NSObject>
+
 - (LoopCell *)LoopCellForLoopPageView:(LoopPageView *)loopPageView atIndex:(NSUInteger)idx;
 - (NSUInteger)numberOfCells;
+
 @required
 
 
