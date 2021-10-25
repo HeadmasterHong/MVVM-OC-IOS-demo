@@ -1,6 +1,4 @@
 # Uncomment the next line to define a global platform for your project
-source 'http://gitlab.tools.vipshop.com/ios-shared/vipods.git'
-source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 
 target 'NoStoryBoard2' do
@@ -11,7 +9,6 @@ target 'NoStoryBoard2' do
   pod 'ReactiveObjC'
   pod 'FMDB'
   pod 'Masonry'
-  pod 'LightArt', '~> 1.3.0.2', :subspecs => ['noYYModel', 'withYYModel'] 
   pod 'SDWebImage', '~> 4.3.1'
   # Pods for NoStoryBoard2
 
