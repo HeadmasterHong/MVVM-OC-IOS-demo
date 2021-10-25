@@ -1,6 +1,0 @@
-framework module Pods_NoStoryBoard2_NoStoryBoard2UITests {
-  umbrella header "Pods-NoStoryBoard2-NoStoryBoard2UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
