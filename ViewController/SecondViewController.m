@@ -10,7 +10,6 @@
 #import "RowCell.h"
 #import "CustomFlowLayout.h"
 #import "ReactiveObjC.h"
-#import "LightArtView.h"
 #import "LoopPageView.h"
 @interface SecondViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, LoopScroolViewDatasource>
 
